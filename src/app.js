@@ -34,6 +34,16 @@ app.post("/Gen", (req, res) => {
     const numNumbers = Number(req.body.Num_numbers) || 0;
     const numSymbols = Number(req.body.Num_symbols) || 0;
 
+    let total = numLetters + numNumbers + numSymbols;
+
+    if (total > 30) {
+        const ratio = 30 / total;
+        numLetters = Math.round(numLetters * ratio);
+        numNumbers = Math.round(numNumbers * ratio);
+        numSymbols = Math.round(numSymbols * ratio);
+        total = numLetters + numNumbers + numSymbols; // للتأكد
+    }
+
     let pass = [
         ...randomChoices(Letters, numLetters),
         ...randomChoices(Numbers, numNumbers),
@@ -52,4 +62,5 @@ const PORT = process.env.PORT || 3500;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+
 });
