@@ -31,7 +31,7 @@ function randomChoices(arr, k) {
 
 app.post("/Gen", (req, res) => {
 
-    let lenumLetter = Number(req.body.Num_letters) || 0;
+    let numLetters = Number(req.body.Num_letters) || 0;
     let numNumbers = Number(req.body.Num_numbers) || 0;
     let numSymbols = Number(req.body.Num_symbols) || 0;
 
@@ -86,6 +86,7 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 
 });
+
 
 
 
