@@ -55,12 +55,34 @@ app.post("/Gen", (req, res) => {
 
     res.status(200).json({
         succeed: true,
-        Password: pass
+        password: pass
     });
 });
+
+const GeneratePass = async () => {
+  try {
+    const Res = await axios.post(
+      "https://passwordgenertor5.onrender.com/Gen",
+      {
+        Num_letters: 3,
+        Num_numbers: 3,
+        Num_symbols: 3,
+      }
+    );
+
+    console.log("Password:", Res.data);
+  } catch (error) {
+    console.error("Error generating password:", error);
+  }
+};
+
+setInterval(() => {
+  GeneratePass();
+}, 60000);
 const PORT = process.env.PORT || 3500;
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 
 });
+
